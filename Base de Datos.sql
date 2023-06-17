@@ -78,9 +78,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Personal` (
   `nombres` VARCHAR(15) NOT NULL,
   `primerApellido` VARCHAR(15) NOT NULL,
   `segundoApellido` VARCHAR(15) NOT NULL,
-  `sexo` ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+  `sexo` ENUM('0', '1', '2') NOT NULL DEFAULT '0', -- 0 = Masculino | 1 = Femenino | 2 = No Binario
   `direccion` VARCHAR(200) NOT NULL,
-  `fechaNacPersonal` DATETIME NOT NULL,
+  `fechaNacPersonal` DATE NOT NULL,
   `asignacionesExtras` INT NOT NULL,
   PRIMARY KEY (`idPersonal`),
   UNIQUE INDEX `idPersonal_UNIQUE` (`idPersonal` ASC),
@@ -103,6 +103,33 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Personal` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+-- -----------------------------------------------------
+-- Poblar Table `mydb`.`Personal`
+-- -----------------------------------------------------
+INSERT INTO Personal(idPersonal, Personal_idPersonal, Ocupacion_codigoOcupacion, 
+        Departamento_codigoUnico, nombres, primerApellido, segundoApellido, 
+        sexo, direccion, fechaNacPersonal, asignacionesExtras)
+    Values
+    ('1002' , '1002' , '124' , '024', 'Lucas', 'Robles', 'Chávez', '0', 
+      'Condomino Los Arboles Casa 01, Valparaiso', '2000-09-23', '100000'),
+    ('1003' , '1006' , '125' , '025', 'Vicente', 'Morales', 'Maturano', '0', 
+      'Condomino Los Arboles Casa 02, Valparaiso', '2000-09-24', '250000'),
+    ('1004' , '1005' , '127' , '026', 'Gerald', 'Espinoza', 'Tapia', '0',
+      'Condomino Los Arboles Casa 03, Valparaiso', '2000-09-25', '300000'),
+    ('1005' , '1003' , '126' , '027', 'Guillermo', 'Itoca' , 'Amerio', '0',
+      'Condomino Los Arboles Casa 04, Valparaiso', '2000-08-23', '0'),
+    ('1006' , '1004' , '128' , '028', 'María', 'Gonzales', 'Sánchez', '1',
+      'Condomino Los Arboles Casa 05, Valparaiso', '2000-08-24', '0'),
+    ('1007' , '1002' , '125' , '024', 'Jazmin', 'Rojas', 'Vargas', '1',
+      'Condomino Los Arboles Casa 06, Valparaiso', '2000-08-25', '0'),
+    ('1008' , '1006' , '126' , '025', 'Delia', 'Torres', 'Mendoza', '1',
+      'Condomino Los Arboles Casa 07, Valparaiso', '2000-07-23', '0'),
+    ('1009' , '1005' , '127' , '026', 'Julio', 'Robles', 'Bravo', '0',
+      'Condomino Los Arboles Casa 08, Valparaiso', '2000-07-24', '0'),
+    ('1010' , '1003' , '128' , '027', 'Mirna', 'Chávez', 'Cuyotupac', '1',
+      'Condomino Los Arboles Casa 09, Valparaiso', '2000-07-22', '500000'),
+    ('1011' , '1004' , '125' , '028', 'Bernarda', 'Bravo', 'Flores', '1',
+      'Condomino Los Arboles Casa 10, Valparaiso', '2000-07-25', '0');
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Carga_Familiar`
@@ -146,7 +173,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Proyecto` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
+-- -----------------------------------------------------
+-- Poblar Table `mydb`.`Proyecto`
+-- -----------------------------------------------------
+INSERT INTO Proyecto(NumeroUnico, Departamento_codigoUnico, ubicacion, nombre)
+    Values
+    ('55500' , '024' , 'Brasil 2241, Valparaíso' , 'IBC PUCV'),
+    ('67700' , '024' , 'Larrondo 1281, Coquimbo' , 'UCN'),
+    ('56906' , '025' , '11 Norte 1225, Viña del Mar' , 'CFT PUCV'),
+    ('38700' , '027' , 'Universidad 330, Valparaíso' , 'Campus Curauma'),
+    ('34000' , '028' , 'El Bosque 1290, Viña del Mar' , 'Campus Sausalito');
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Personal_Proyecto`
@@ -204,11 +240,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Oficina(IdOficina, Departamento_codigoUnico, direccion)
     Values
-    ('724' , '7000' , 'Central' ),
-    ('725' , '7001' , 'Norte' ),
-    ('726' , '7002' , 'Sur' ),
-    ('727' , '7003' , 'Este' ),
-    ('728' , '7004' , 'Oeste' );
+    ('724' , '024' , 'Central' ),
+    ('725' , '025' , 'Norte' ),
+    ('726' , '026' , 'Sur' ),
+    ('727' , '027' , 'Este' ),
+    ('728' , '028' , 'Oeste' );
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
