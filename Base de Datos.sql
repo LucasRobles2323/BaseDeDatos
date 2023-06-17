@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Carga_Familiar` (
   `Personal_idPersonal` VARCHAR(20) NOT NULL,
   `parentesco` ENUM('1', '2', '3') NOT NULL DEFAULT '3',
   `sexo` ENUM('0', '1', '2') NOT NULL DEFAULT '0',
-  `fechaNac` DATETIME NOT NULL,
+  `fechaNac` DATE NOT NULL,
   `nombreCompleto` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCarga_Familiar`),
   INDEX `fk_Carga_Familiar_Personal1_idx` (`Personal_idPersonal` ASC),
@@ -152,7 +152,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Carga_Familiar` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
+-- -----------------------------------------------------
+-- Poblar Table `mydb`.`Carga_Familiar`
+-- -----------------------------------------------------
+INSERT INTO Carga_Familiar(idCarga_Familiar, Personal_idPersonal, parentesco, 
+        sexo, fechaNac, nombreCompleto)
+    Values
+    ('14.789.234-K' , '13.959.123-2' , '3' , '0', '1998-04-14', 'Oscar Gabriel López Álvarez'),
+    ('21.485.794-2' , '13.959.123-2' , '2' , '0', '2004-07-23', 'José Eduardo López Rojas'),
+    ('24.632.958-2' , '24.795.345-K' , '1' , '1', '2013-02-07', 'Javiera Andrea Itoca Rojas'),
+    ('19.298.579-8' , '20.103.359-K' , '3' , '1', '1997-07-23', 'Susana del Carmen Porras Montecinos'),
+    ('18.284.392-1' , '20.223.059-7' , '2' , '0', '2007-09-04', 'Samuel Abelardo Chávez Morales'),
+    ('15.824.739-2' , '21.365.027-K' , '3' , '1', '2001-11-12', 'Carolina Isabel Cárdenas Contreras');
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Proyecto`
@@ -179,7 +190,7 @@ ENGINE = InnoDB;
 INSERT INTO Proyecto(NumeroUnico, Departamento_codigoUnico, ubicacion, nombre)
     Values
     ('55500' , '024' , 'Brasil 2241, Valparaíso' , 'IBC PUCV'),
-    ('67700' , '024' , 'Larrondo 1281, Coquimbo' , 'UCN'),
+    ('67700' , '026' , 'Larrondo 1281, Coquimbo' , 'UCN'),
     ('56906' , '025' , '11 Norte 1225, Viña del Mar' , 'CFT PUCV'),
     ('38700' , '027' , 'Universidad 330, Valparaíso' , 'Campus Curauma'),
     ('34000' , '028' , 'El Bosque 1290, Viña del Mar' , 'Campus Sausalito');
@@ -211,11 +222,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Personal_Proyecto(Proyecto_NumeroUnico, Personal_idPersonal, horas_Mensuales)
     Values
-    ('624' , '6000' , '120' ),
-    ('625' , '6001' , '110' ),
-    ('626' , '6002' , '124' ),
-    ('627' , '6003' , '123' ),
-    ('628' , '6004' , '100' );
+    ('55500' , '21.365.017-3' , '120' ),
+    ('67700' , '22.364.017-3' , '110' ),
+    ('56906' , '20.223.059-7' , '124' ),
+    ('38700' , '19.564.392-2' , '123' ),
+    ('34000' , '13.959.123-2' , '100' );
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Oficina`
@@ -240,11 +251,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Oficina(IdOficina, Departamento_codigoUnico, direccion)
     Values
-    ('724' , '024' , 'Central' ),
-    ('725' , '025' , 'Norte' ),
-    ('726' , '026' , 'Sur' ),
-    ('727' , '027' , 'Este' ),
-    ('728' , '028' , 'Oeste' );
+    ('724' , '024' , 'Avenida del Mar 567, Viña del Mar'),
+    ('725' , '025' , 'Pasaje Las Flores 789, Villa Alemana'),
+    ('726' , '026' , 'Calle Los Poetas 321, Limache'),
+    ('727' , '027' , 'Avenida Libertad 567, Casablanca'),
+    ('728' , '028' , 'Calle Los Pinos 123, Valparaíso'),
+    ('729' , '024' , 'Brasil 2241, Valparaíso'),
+    ('730' , '026' , 'Larrondo 1281, Coquimbo'),
+    ('731' , '025' , '11 Norte 1225, Viña del Mar'),
+    ('732' , '027' , 'Universidad 330, Valparaíso'),
+    ('733' , '028' , 'El Bosque 1290, Viña del Mar');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
