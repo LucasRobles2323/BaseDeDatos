@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `mydb`.`Ocupacion` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Ocupacion` (
   `codigoOcupacion` INT NOT NULL,
-  `nombre` VARCHAR(15) NOT NULL,
+  `nombre` VARCHAR(200) NOT NULL,
   `sueldo` INT NOT NULL,
   PRIMARY KEY (`codigoOcupacion`),
   UNIQUE INDEX `codigoOcupación_UNIQUE` (`codigoOcupacion` ASC))
