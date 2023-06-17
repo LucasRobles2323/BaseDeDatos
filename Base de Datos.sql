@@ -104,7 +104,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Personal` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`Carga_Familiar`
 -- -----------------------------------------------------
@@ -171,7 +170,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Personal_Proyecto` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
+-- -----------------------------------------------------
+-- Poblar Table `mydb`.`Personal_Proyecto`
+-- -----------------------------------------------------
+INSERT INTO Personal_Proyecto(Proyecto_NumeroUnico, Personal_idPersonal, horas_Mensuales)
+    Values
+    ('624' , '6000' , '120' ),
+    ('625' , '6001' , '110' ),
+    ('626' , '6002' , '124' ),
+    ('627' , '6003' , '123' ),
+    ('628' , '6004' , '100' );
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Oficina`
@@ -191,6 +199,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Oficina` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+-- -----------------------------------------------------
+-- Poblar Table `mydb`.`Oficina`
+-- -----------------------------------------------------
+INSERT INTO Oficina(IdOficina, Departamento_codigoUnico, direccion)
+    Values
+    ('724' , '7000' , 'Central' ),
+    ('725' , '7001' , 'Norte' ),
+    ('726' , '7002' , 'Sur' ),
+    ('727' , '7003' , 'Este' ),
+    ('728' , '7004' , 'Oeste' );
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
