@@ -18,6 +18,8 @@ DROP SCHEMA IF EXISTS `mydb` ;
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
+
+
 -- -----------------------------------------------------
 -- Table `mydb`.`Ocupacion`
 -- -----------------------------------------------------
@@ -41,6 +43,8 @@ INSERT INTO Ocupacion(codigoOcupacion, nombre, sueldo)
     ('127' , 'Ingeniería Civil en Telecomunicaciones' , '400000' ),
     ('128' , 'Ingeniería Civil Electrónica' , '3500000' );
 
+
+
 -- -----------------------------------------------------
 -- Table `mydb`.`Departamento`
 -- -----------------------------------------------------
@@ -63,7 +67,9 @@ INSERT INTO Departamento(codigoUnico, nombre, fechaIniGerente, esOperativo)
     ('025' , 'Azul' , '2015-01-20 13:00:55' , '1' ),
     ('026' , 'Negro' , '2016-01-20 13:00:55' , '0' ),
     ('027' , 'Blanco' , '2017-01-20 13:00:55' , '1' ),
-    ('028' , 'Naranjo' , '2018-01-20 13:00:55' , '1');
+    ('028' , 'Naranja' , '2018-01-20 13:00:55' , '1');
+
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Personal`
@@ -78,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Personal` (
   `nombres` VARCHAR(15) NOT NULL,
   `primerApellido` VARCHAR(15) NOT NULL,
   `segundoApellido` VARCHAR(15) NOT NULL,
-  `sexo` ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+  `sexo` ENUM('0', '1', '2') NOT NULL DEFAULT '0', -- 0 = Masculino | 1 = Femenino | 2 = No Binario
   `direccion` VARCHAR(200) NOT NULL,
   `fechaNacPersonal` DATE NOT NULL,
   `asignacionesExtras` INT NOT NULL,
@@ -131,6 +137,8 @@ INSERT INTO Personal(idPersonal, Personal_idPersonal, Ocupacion_codigoOcupacion,
     ('19.564.392-2' , '20.223.059-7' , '125' , '028', 'Bernarda', 'Bravo', 'Flores', '1',
       'Condomino Los Arboles Casa 10, Valparaiso', '2000-07-25', '0');
 
+
+
 -- -----------------------------------------------------
 -- Table `mydb`.`Carga_Familiar`
 -- -----------------------------------------------------
@@ -140,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Carga_Familiar` (
   `idCarga_Familiar` VARCHAR(20) NOT NULL,
   `Personal_idPersonal` VARCHAR(20) NOT NULL,
   `parentesco` ENUM('1', '2', '3') NOT NULL DEFAULT '3',
-  `sexo` ENUM('0', '1', '2') NOT NULL DEFAULT '0',
+  `sexo` ENUM('0', '1', '2') NOT NULL DEFAULT '0', -- 0 = Masculino | 1 = Femenino | 2 = No Binario
   `fechaNac` DATE NOT NULL,
   `nombreCompleto` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idCarga_Familiar`),
@@ -164,6 +172,8 @@ INSERT INTO Carga_Familiar(idCarga_Familiar, Personal_idPersonal, parentesco,
     ('19.298.579-8' , '20.103.359-K' , '3' , '1', '1997-07-23', 'Susana del Carmen Porras Montecinos'),
     ('18.284.392-1' , '20.223.059-7' , '2' , '0', '2007-09-04', 'Samuel Abelardo Chávez Morales'),
     ('15.824.739-2' , '21.365.027-K' , '3' , '1', '2001-11-12', 'Carolina Isabel Cárdenas Contreras');
+
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Proyecto`
@@ -189,11 +199,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 INSERT INTO Proyecto(NumeroUnico, Departamento_codigoUnico, ubicacion, nombre)
     Values
-    ('55500' , '024' , 'Brasil 2241, Valparaíso' , 'IBC PUCV'),
-    ('67700' , '026' , 'Larrondo 1281, Coquimbo' , 'UCN'),
-    ('56906' , '025' , '11 Norte 1225, Viña del Mar' , 'CFT PUCV'),
+    ('55500' , '025' , 'Av. Brasil 2241, Valparaíso' , 'IBC PUCV'),
+    ('67700' , '028' , 'Larrondo 1281, Coquimbo' , 'UCN'),
+    ('56906' , '027' , '11 Norte 1225, Viña del Mar' , 'CFT PUCV'),
     ('38700' , '027' , 'Universidad 330, Valparaíso' , 'Campus Curauma'),
-    ('34000' , '028' , 'El Bosque 1290, Viña del Mar' , 'Campus Sausalito');
+    ('34000' , '028' , 'El Bosque 1290, Viña del Mar' , 'Campus Sausalito'),
+    ('58800' , '025' , 'Av. Brasil 2162, Valparaiso ' , 'IB PUCV');
+
+
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Personal_Proyecto`
@@ -228,6 +241,8 @@ INSERT INTO Personal_Proyecto(Proyecto_NumeroUnico, Personal_idPersonal, horas_M
     ('38700' , '19.564.392-2' , '123' ),
     ('34000' , '13.959.123-2' , '100' );
 
+
+
 -- -----------------------------------------------------
 -- Table `mydb`.`Oficina`
 -- -----------------------------------------------------
@@ -256,13 +271,51 @@ INSERT INTO Oficina(IdOficina, Departamento_codigoUnico, direccion)
     ('726' , '026' , 'Calle Los Poetas 321, Limache'),
     ('727' , '027' , 'Avenida Libertad 567, Casablanca'),
     ('728' , '028' , 'Calle Los Pinos 123, Valparaíso'),
-    ('729' , '024' , 'Brasil 2241, Valparaíso'),
-    ('730' , '026' , 'Larrondo 1281, Coquimbo'),
-    ('731' , '025' , '11 Norte 1225, Viña del Mar'),
+    ('729' , '025' , 'Av. Brasil 2241, Valparaíso'),
+    ('730' , '028' , 'Larrondo 1281, Coquimbo'),
+    ('731' , '027' , '11 Norte 1225, Viña del Mar'),
     ('732' , '027' , 'Universidad 330, Valparaíso'),
-    ('733' , '028' , 'El Bosque 1290, Viña del Mar');
+    ('733' , '028' , 'El Bosque 1290, Viña del Mar'),
+    ('734' , '025' , 'Av. Brasil 2162, Valparaiso');
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- CONSULTAS
+-- --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- -----------------------------------------------------
+-- 1. Nombres de los Proyectos del Departamento "Blanco"
+-- -----------------------------------------------------
+SELECT Proyecto.nombre
+FROM Proyecto JOIN Departamento ON Departamento.codigoUnico = Proyecto.Departamento_codigoUnico
+WHERE Departamento.nombre = "Blanco";
+
+-- -------------------------------------------------------------------------
+-- 2. Nombres de las cargas de los empleados del Proyecto "Campus Sausalito"
+-- -------------------------------------------------------------------------
+SELECT Carga_Familiar.nombreCompleto
+FROM (((Carga_Familiar JOIN Personal ON Personal.idPersonal = Carga_Familiar.Personal_idPersonal) 
+    JOIN Personal_Proyecto ON Personal_Proyecto.Personal_idPersonal = Personal.idPersonal)
+    JOIN Proyecto ON Proyecto.NumeroUnico = Personal_Proyecto.Proyecto_NumeroUnico)
+WHERE Proyecto.nombre = "Campus Sausalito";
+
+
+-- ---------------------------------------------------------------------------------------
+-- 3. Mostrar el nombre completo del Personal Operativo de la Empresa
+-- ---------------------------------------------------------------------------------------
+SELECT DISTINCT Personal.nombres, Personal.primerApellido, Personal.segundoApellido
+FROM Personal JOIN Departamento ON Departamento.codigoUnico = Personal.Departamento_codigoUnico
+WHERE Departamento.esOperativo = 1;
+
+-- ---------------------------------------------------------------------------------------
+-- 4. Mostrar el nombre completo del Personal Operativo que este trabajando en un Proyecto
+-- ---------------------------------------------------------------------------------------
+SELECT DISTINCT Personal.nombres, Personal.primerApellido, Personal.segundoApellido
+FROM ((Personal JOIN Departamento ON Departamento.codigoUnico = Personal.Departamento_codigoUnico)
+    JOIN Proyecto ON Departamento.codigoUnico = Proyecto.Departamento_codigoUnico)
+WHERE Departamento.esOperativo = 1;
